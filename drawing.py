@@ -2,13 +2,14 @@ from PIL import Image, ImageDraw
 import math
 
 # Create basic image
-width = 150
-height = 150
+width = 128
+height = 128
 im = Image.new("I", (width, height), color=0)
 
 # L-system variables
 # Special characters are...
-#   F: draw line
+#  F: draw line
+#  f: move position forward
 # +-: change angle
 # []: save/load position
 #  o: draw a circle
@@ -72,4 +73,5 @@ for char in current:
         draw.ellipse([(x - circleRadius, y - circleRadius), (x + circleRadius, y + circleRadius)], fill=color)
 
 # Display the image
+im.save("test.png", "PNG")
 im.show()
