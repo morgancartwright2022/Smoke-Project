@@ -9,11 +9,6 @@ import math
 
 #Uses a space-filling Hilbert Curve to encode a position. Lossless/Lossy capable.
 #https://en.wikipedia.org/wiki/Hilbert_curve#Applications_and_mapping_algorithms
-width = 256
-height = 256
-# im = Image.new("I", (width, height), color=25)
-im = Image.open("test.png")
-sm = im.convert("L")
     
 class Hilbert():
     def __init__(self,img):
@@ -203,17 +198,12 @@ class Hilbert():
         else:
             return sum(lst)
 
-
-""" draw = ImageDraw.Draw(sm)
-font = ImageFont.truetype("arial.ttf",9)
-last = (0,0)
-draw.line([(width/2,0),(width/2,width)],fill=127,width=9)
-draw.line([(0,width/2),(width,width/2)],fill=127)
-draw.pieslice([(9,50),(160,170)], 0, 180, fill=127) """
-pt = (15,8)
-sm=sm.filter(ImageFilter.GaussianBlur(2))
-h = Hilbert(sm)
-h.Dither.process()
-sm=sm.filter(ImageFilter.GaussianBlur(4))
-sm.show()
-sm.save("SmokeWithFilter1.png", "PNG")
+# Process the image
+def process(im):
+    sm = im.convert("L")
+    pt = (15,8)
+    sm=sm.filter(ImageFilter.GaussianBlur(2))
+    h = Hilbert(sm)
+    h.Dither.process()
+    sm=sm.filter(ImageFilter.GaussianBlur(4))
+    return sm
